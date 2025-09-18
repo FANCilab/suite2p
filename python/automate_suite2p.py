@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Sep  2 09:58:31 2025
-
-@author: User
-"""
-
 from suite2p.run_s2p import run_s2p
 
 #paths to multiple experiment folders
@@ -44,3 +37,4 @@ ops_exp1 = run_s2p(ops_exp1, db_exp1)
 # Run Suite2p on second experiment
 print(f"Running Suite2p on {folder2}")
 ops_exp2 = run_s2p(ops_exp2, db_exp2)
+
