@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Jun 17 10:12:30 2025
-
-@author: User
-"""
-
 import numpy as np
 from scipy.stats import zscore
 import matplotlib.pyplot as plt
@@ -82,5 +75,6 @@ for i, roi in enumerate(stat):
         plt.gca().add_patch(poly)
 plt.title('ROIs overlay on mean image')
 plt.show()
+
 
 
