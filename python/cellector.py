@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Sep  4 15:30:56 2025
-
-@author: User
-"""
 #after installing, inside an existing environment, with 'pip install cellector'
 from cellector.io import create_from_suite2p
 suite2p_dir = 'D:/Data/2P/suite2p/suite2p' #the directory containing the folders of various planes
@@ -29,4 +23,5 @@ for directory in other_directories:
     
     # this will save the updated criteria and idx_selection to cellector directory
     # it will also save empty manual label arrays if they don't exist
+
     manager.save_all() 
