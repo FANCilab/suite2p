@@ -1,12 +1,11 @@
 #after installing, inside an existing environment, with 'pip install cellector'
 from cellector.io import create_from_suite2p
-suite2p_dir = 'D:/Data/2P/suite2p/suite2p' #the directory containing the folders of various planes
+suite2p_dir = 'file_path' #the directory containing the folders of various planes
 roi_processor = create_from_suite2p(suite2p_dir)
 #if using the GUI
 from cellector.gui import SelectionGUI
 gui = SelectionGUI(roi_processor)
 #save stuff from the GUI
-
 
 #alternatively, once you know the settings will be the same across multiple experiments, automate batch processing
 from cellector.io import propgate_criteria
@@ -25,3 +24,4 @@ for directory in other_directories:
     # it will also save empty manual label arrays if they don't exist
 
     manager.save_all() 
+
