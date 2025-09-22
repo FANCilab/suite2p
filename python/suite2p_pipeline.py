@@ -31,9 +31,28 @@ plt.plot(frameTime, neurons_smooth[10,:], label='Smoothed', linewidth=2)
 plt.legend()
 plt.show()
 
-#debleach
-#add
-
+#remove frame artifacts
+# Calculate difference of mean values across columns
+dPop = np.diff(np.mean(neurons, axis=0), prepend=0)
+# Identify artifacts where change is > 50
+artefacts = np.abs(dPop) > 50
+# Set artifact columns to NaN
+neurons[:, artefacts] = np.nan
+Fneu[:, artefacts] = np.nan
+#define a function to interpolate across the nans
+def interpNaN(array):
+    array = array.copy()
+    nans = np.isnan(array)
+    x = nans.nonzero()[0]
+    xp = (~nans).nonzero()[0]
+    fp = array[~nans]
+    array[nans] = np.interp(x, xp, fp)
+    return array
+# If artifacts found, interpolate NaNs along each row
+if np.sum(artefacts) > 0:
+    for iN in range(nN):
+        neurons[iN, :] = interpNaN(neurons[iN, :])
+        Fneu[iN, :] = interpNaN(Fneu[iN, :])
 
 #Plot first n neurons' z-scored traces
 n = 5 #how many neurons' traces do you want to visualize
@@ -65,16 +84,17 @@ plt.ylabel('Neuron')
 plt.title('Raster plot of inferred spikes')
 plt.show()
 
-#show ROIs
+#ROIs overlaid on mean image
 mean_image = ops['meanImg']
 plt.imshow(mean_image, cmap='gray')
-
-for i, roi in enumerate(stat):
-    if iscell[i,0]:
-        poly = Polygon([roi['med'[0]], [roi['med'][1]]], fill=None, edgecolor='r', linewidth=1)
-        plt.gca().add_patch(poly)
+for roi in stat:
+    # Each 'stat' entry has 'xpix' and 'ypix' for ROI pixel coordinates
+    x = roi['xpix']
+    y = roi['ypix']
+    # Create a polygon around ROI pixels and add it to the plot
+    # Closing the polygon by repeating the first point
+    poly = Polygon(np.array([x,y]).T, fill = None, edgecolor='r', alpha=0.1)
+    plt.gca().add_patch(poly)
 plt.title('ROIs overlay on mean image')
 plt.show()
-
-
 
