@@ -16,13 +16,13 @@ db_dict = {}
 
 #first entry in db dictionary
 db_dict['First experiment'] = {
-    'data_path': "path",
+    'data_path': ["path"],
     'save_path0': "path",
 }
 
 
 db_dict['Second experiment'] = {
-    'data_path': "path",
+    'data_path': ["path"],
     'save_path0': "path",
 }
 
@@ -32,5 +32,6 @@ num_experiments = np.size(db_dict)
 list_experiments = list(db_dict.keys())
 for i in range(num_experiments):
     output_ops = suite2p.run_s2p(ops = ops, db = db_dict[list_experiments[i]])
+
 
 
