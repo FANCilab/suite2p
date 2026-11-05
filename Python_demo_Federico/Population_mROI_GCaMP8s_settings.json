@@ -1,0 +1,109 @@
+{
+  "torch_device": "cuda",
+  "tau": 0.5,
+  "fs": 5.869041182442207,
+  "diameter": [
+    20.0,
+    20.0
+  ],
+  "run": {
+    "do_registration": 1,
+    "do_regmetrics": true,
+    "do_detection": true,
+    "do_deconvolution": true,
+    "multiplane_parallel": false
+  },
+  "io": {
+    "combined": true,
+    "save_mat": true,
+    "save_NWB": false,
+    "save_ops_orig": true,
+    "delete_bin": false,
+    "move_bin": false
+  },
+  "registration": {
+    "align_by_chan2": false,
+    "nimg_init": 300,
+    "maxregshift": 0.1,
+    "do_bidiphase": false,
+    "bidiphase": 0.0,
+    "batch_size": 25,
+    "nonrigid": true,
+    "maxregshiftNR": 5,
+    "block_size": [
+      128.0,
+      128.0
+    ],
+    "smooth_sigma_time": 0.0,
+    "smooth_sigma": 1.15,
+    "spatial_taper": 3.45,
+    "th_badframes": 1.0,
+    "norm_frames": true,
+    "snr_thresh": 1.2,
+    "subpixel": 10,
+    "two_step_registration": false,
+    "reg_tif": false,
+    "reg_tif_chan2": false
+  },
+  "detection": {
+    "algorithm": "sourcery",
+    "denoise": false,
+    "block_size": [
+      64.0,
+      64.0
+    ],
+    "nbins": 4000,
+    "bin_size": 5,
+    "highpass_time": 100,
+    "threshold_scaling": 1.0,
+    "npix_norm_min": 0.0,
+    "npix_norm_max": 100.0,
+    "max_overlap": 0.75,
+    "soma_crop": true,
+    "chan2_threshold": 0.25,
+    "cellpose_chan2": false,
+    "sparsery_settings": {
+      "highpass_neuropil": 25,
+      "max_ROIs": 5000,
+      "spatial_scale": 0,
+      "active_percentile": 0.0
+    },
+    "sourcery_settings": {
+      "connected": true,
+      "max_iterations": 20,
+      "smooth_masks": false
+    },
+    "cellpose_settings": {
+      "cellpose_model": "cpsam",
+      "img": "meanImg",
+      "highpass_spatial": 0,
+      "flow_threshold": 0.4,
+      "cellprob_threshold": 0.0,
+      "params": null,
+      "params_chan2": null
+    }
+  },
+  "classification": {
+    "classifier_path": null,
+    "use_builtin_classifier": false,
+    "preclassify": 0.0
+  },
+  "extraction": {
+    "snr_threshold": 0.0,
+    "batch_size": 500,
+    "neuropil_extract": true,
+    "neuropil_coefficient": 1.0,
+    "inner_neuropil_radius": 2,
+    "min_neuropil_pixels": 350,
+    "lam_percentile": 50.0,
+    "allow_overlap": false,
+    "circular_neuropil": false
+  },
+  "dcnv_preprocess": {
+    "baseline": "maximin",
+    "win_baseline": 60.0,
+    "sig_baseline": 10.0,
+    "prctile_baseline": 8.0
+  },
+  "version": "1.0.0.1"
+}
