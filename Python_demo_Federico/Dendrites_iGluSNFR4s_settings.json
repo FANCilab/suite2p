@@ -1,7 +1,7 @@
 {
   "torch_device": "cuda",
   "tau": 1.0,
-  "fs": 10.0,
+  "fs": 30.0,
   "diameter": [
     8.0,
     8.0
